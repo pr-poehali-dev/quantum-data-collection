@@ -1,36 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import HeroSection from '@/components/HeroSection';
-
-const missions = [
-  {
-    icon: '🔥',
-    title: 'Пожар в здании',
-    description: 'Узнай, как правильно эвакуироваться и помочь другим выбраться в безопасное место.',
-    level: 'Уровень 1',
-    color: 'from-orange-500/20 to-red-500/20',
-    border: 'border-orange-500/30',
-    badge: 'bg-orange-500/20 text-orange-300',
-  },
-  {
-    icon: '🗺️',
-    title: 'Потерялся в городе',
-    description: 'Найди безопасный путь домой и обратись за помощью к правильным людям.',
-    level: 'Уровень 2',
-    color: 'from-blue-500/20 to-cyan-500/20',
-    border: 'border-blue-500/30',
-    badge: 'bg-blue-500/20 text-blue-300',
-  },
-  {
-    icon: '🚨',
-    title: 'Встреча с незнакомцем',
-    description: 'Научись распознавать опасные ситуации и принимать правильные решения.',
-    level: 'Уровень 3',
-    color: 'from-purple-500/20 to-pink-500/20',
-    border: 'border-purple-500/30',
-    badge: 'bg-purple-500/20 text-purple-300',
-  },
-];
+import { missions } from '@/data/missions';
 
 const Index = () => {
+  const navigate = useNavigate();
+
   return (
     <main className="bg-slate-900 min-h-screen">
       <HeroSection />
@@ -52,8 +26,8 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {missions.map((mission) => (
               <div
-                key={mission.title}
-                className={`relative rounded-2xl border ${mission.border} bg-gradient-to-br ${mission.color} p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer`}
+                key={mission.id}
+                className={`relative rounded-2xl border ${mission.border} bg-gradient-to-br ${mission.color} p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl`}
               >
                 <div className="mb-6">
                   <span className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${mission.badge} mb-4`}>
@@ -63,7 +37,10 @@ const Index = () => {
                   <h3 className="text-2xl font-bold text-white mb-3">{mission.title}</h3>
                   <p className="text-white/60 leading-relaxed">{mission.description}</p>
                 </div>
-                <button className="w-full rounded-xl border border-white/20 bg-white/10 py-3 text-sm font-semibold text-white transition-all hover:bg-white/20">
+                <button
+                  onClick={() => navigate(`/mission/${mission.id}`)}
+                  className="w-full rounded-xl border border-white/20 bg-white/10 py-3 text-sm font-semibold text-white transition-all hover:bg-white/20 cursor-pointer"
+                >
                   Начать миссию →
                 </button>
               </div>
