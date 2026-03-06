@@ -9,7 +9,7 @@ const Index = () => {
     <main className="bg-slate-900 min-h-screen">
       <HeroSection />
 
-      <section className="py-24 px-8 md:px-16">
+      <section id="missions" className="py-24 px-8 md:px-16">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <span className="inline-block rounded-full border border-yellow-400/30 bg-yellow-400/10 px-4 py-2 text-sm font-semibold uppercase tracking-widest text-yellow-400 mb-6">

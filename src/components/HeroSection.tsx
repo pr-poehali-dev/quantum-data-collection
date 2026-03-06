@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 const images = [
@@ -16,6 +17,7 @@ const missions = [
 ];
 
 export default function HeroSection() {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -97,10 +99,16 @@ export default function HeroSection() {
               )}
             >
               <div className="flex flex-wrap gap-4">
-                <button className="rounded-full bg-yellow-400 px-8 py-4 text-lg font-bold text-slate-900 shadow-lg shadow-yellow-400/30 transition-all hover:scale-105 hover:bg-yellow-300">
+                <button
+                  onClick={() => navigate('/mission/fire')}
+                  className="rounded-full bg-yellow-400 px-8 py-4 text-lg font-bold text-slate-900 shadow-lg shadow-yellow-400/30 transition-all hover:scale-105 hover:bg-yellow-300"
+                >
                   Начать игру
                 </button>
-                <button className="rounded-full border border-white/30 bg-white/10 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20">
+                <button
+                  onClick={() => { const el = document.getElementById('missions'); el?.scrollIntoView({ behavior: 'smooth' }); }}
+                  className="rounded-full border border-white/30 bg-white/10 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
+                >
                   О миссиях
                 </button>
               </div>
